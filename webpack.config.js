@@ -2,9 +2,17 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const isProduction = process.env.NODE_ENV == 'production';
-
-const config = {
+const mode = process.env.NODE_ENV || 'development';
+const devMode = mode === 'development';
+const target = devMode ? 'web' : 'browserslist';
+const devtool = devMode ? 'source-map' : undefined;
+module.exports = {
+    mode,
+    target,
+    devtool,
+    devServer: {
+        open: true,
+    },
     entry: path.resolve(__dirname, 'src', 'index.ts'),
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -13,15 +21,11 @@ const config = {
         filename: '[name].js',
         assetModuleFilename: 'assert/[name][ext]',
     },
-    devServer: {
-        historyApiFallback: true,
-        contentBase: './',
-        port: 3000,
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html'),
         }),
+        new MiniCssExtractPlugin(),
         new CopyWebpackPlugin({
             patterns: [
                 {
@@ -39,9 +43,13 @@ const config = {
                 exclude: ['/node_modules/'],
             },
             {
+                test: /\.html$/i,
+                loader: 'html-loader',
+            },
+            {
                 test: /\.(c|sa|sc)ss$/i,
                 use: [
-                    isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
                     {
                         loader: 'postcss-loader',
@@ -95,18 +103,20 @@ const config = {
                 ],
                 type: 'asset/resource',
             },
+            {
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    },
+                },
+            },
+            {
+                test: /\.mp3$/,
+                type: 'asset/resource',
+            },
         ],
     },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
-    },
-};
-
-module.exports = () => {
-    if (isProduction) {
-        config.mode = 'production';
-    } else {
-        config.mode = 'development';
-    }
-    return config;
 };
