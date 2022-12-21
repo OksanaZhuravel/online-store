@@ -1,9 +1,6 @@
-import { App } from './app/App';
-
-const root = document.getElementById('root') as HTMLDivElement;
+import App from './core/pages/app/App';
 
 const app = new App();
-
-root.innerHTML = app.render();
+app.run();
 
 
