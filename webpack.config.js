@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const stylesHandler = 'style-loader';
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
@@ -46,28 +47,32 @@ module.exports = {
                 test: /\.html$/i,
                 loader: 'html-loader',
             },
+            // {
+            //     test: /\.(c|sa|sc)ss$/i,
+            //     use: [
+            //         devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            //         'css-loader',
+            //         {
+            //             loader: 'postcss-loader',
+            //             options: {
+            //                 postcssOptions: {
+            //                     plugins: [
+            //                         [
+            //                             'postcss-preset-env',
+            //                             {
+            //                                 // Options
+            //                             },
+            //                         ],
+            //                     ],
+            //                 },
+            //             },
+            //         },
+            //         'sass-loader',
+            //     ],
+            // },
             {
-                test: /\.(c|sa|sc)ss$/i,
-                use: [
-                    devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            postcssOptions: {
-                                plugins: [
-                                    [
-                                        'postcss-preset-env',
-                                        {
-                                            // Options
-                                        },
-                                    ],
-                                ],
-                            },
-                        },
-                    },
-                    'sass-loader',
-                ],
+                test: /\.css$/i,
+                use: [stylesHandler, 'css-loader'],
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
