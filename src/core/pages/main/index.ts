@@ -1,9 +1,6 @@
 import Page from '../../tempates/page';
-export interface ISource {
-    id: string;
-    title: string;
-    description: string;
-}
+import { ISource } from '../../interfaces/Products';
+
 class MainPage extends Page {
     static TextObject = {
         MainTitle: 'Main Page',
@@ -22,7 +19,7 @@ class MainPage extends Page {
     }
     static draw(data: ISource[]) {
         console.log(data);
-        
+
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp')! as HTMLTemplateElement;
 
@@ -37,7 +34,7 @@ class MainPage extends Page {
 
         (document.querySelector('#main') as HTMLTemplateElement).append(fragment);
     }
-    static fetchProducts(){
+    static fetchProducts() {
         fetch('https://dummyjson.com/products')
             .then(this.errorHandler)
             .then((res) => res.json())
