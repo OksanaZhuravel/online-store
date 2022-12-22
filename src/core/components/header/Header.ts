@@ -19,14 +19,14 @@ class Header extends Component {
     }
 
     renderPageButtons() {
-        const pageButtonsContainer = document.createElement('div');
+        const pageButtonsContainer = document.createElement('nav');
         Buttons.forEach((button) => {
             const buttonHTMLElement = document.createElement('a');
             buttonHTMLElement.href = `#${button.id}`;
             buttonHTMLElement.innerText = `${button.text}`;
             pageButtonsContainer.append(buttonHTMLElement);
         });
-        this.container.append(pageButtonsContainer);
+        document.querySelector('#header')!.append(pageButtonsContainer);
     }
 
     render(): HTMLElement {
