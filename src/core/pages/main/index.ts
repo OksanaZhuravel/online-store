@@ -7,6 +7,60 @@ export interface ISource {
 class MainPage extends Page {
     static TextObject = {
         MainTitle: 'Main Page',
+        MainText: `
+        <div class="listing__iner">
+            <div class="listing__grid-aside">
+                <div class="filter">
+                    <div class="filter-item">
+                        <div class="filter-panel">
+                            <div class="panel__header">
+                                <div class="panel__header__icon">^</div>
+                                <span class="filter-panel__title">Цена руб. </span>
+                            </div>
+                            <div class="panel__content">
+                                <div class="filter-panel__content">
+                                    <div class="filter-range">
+                                        <label class="filter-range__label">
+                                            <input type="number" class="range-input">
+                                            <span class="filter-range__label-text">от</span>
+                                        </label>
+                                        <label class="filter-range__label">
+                                            <input type="number" class="range-input">
+                                            <span class="filter-range__label-text">до</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-item">
+                        <div class="filter-panel">
+                            <div class="panel__header">
+                                <div class="panel__header__icon">^</div>
+                                <span class="filter-panel__title">Цена руб. </span>
+                            </div>
+                            <div class="panel__content">
+                                <div class="filter-panel__content">
+                                    <div class="filter-range">
+                                        <label class="filter-range__label">
+                                            <input type="number" class="range-input">
+                                            <span class="filter-range__label-text">от</span>
+                                        </label>
+                                        <label class="filter-range__label">
+                                            <input type="number" class="range-input">
+                                            <span class="filter-range__label-text">до</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="listing__grid-main table">
+                <div class="listing__generated-container" id="products-list"></div>
+            </div>
+        </div>`
     };
     constructor(public id: string) {
         super(id);
@@ -24,18 +78,20 @@ class MainPage extends Page {
         console.log(data);
         
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector('#sourceItemTemp')! as HTMLTemplateElement;
+        const cardTemp = document.querySelector('#cardTemp')! as HTMLTemplateElement;
 
         data.forEach((item) => {
-            const sourceClone = sourceItemTemp.content.cloneNode(true)! as HTMLDivElement;
+            const cardClone = cardTemp.content.cloneNode(true)! as HTMLDivElement;
 
-            (sourceClone.querySelector('.source__item-name') as HTMLTemplateElement).textContent = item.title;
-            (sourceClone.querySelector('.source__item') as HTMLTemplateElement).setAttribute('data-source-id', item.id);
+            (cardClone.querySelector('.card-title') as HTMLTemplateElement).textContent = item.title;
+            (cardClone.querySelector('.card-text') as HTMLTemplateElement).textContent = item.description;
+            (cardClone.querySelector('.card-wrap') as HTMLTemplateElement).setAttribute('data-card-id', item.id);
 
-            fragment.append(sourceClone);
+            fragment.append(cardClone);
         });
-
-        (document.querySelector('#main') as HTMLTemplateElement).append(fragment);
+        console.log(fragment);
+        
+        (document.querySelector('#products-list'))!.append(fragment);
     }
     static fetchProducts(){
         fetch('https://dummyjson.com/products')
@@ -46,8 +102,10 @@ class MainPage extends Page {
     }
     render() {
         const title = this.createHeaderTitle(MainPage.TextObject.MainTitle);
-        MainPage.fetchProducts();
+        const text = this.createPage(MainPage.TextObject.MainText);
         this.container.append(title);
+        this.container.append(text);
+        MainPage.fetchProducts();
         return this.container;
     }
 }
