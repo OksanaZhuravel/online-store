@@ -7,6 +7,11 @@ export const enum PageIds {
     Mainpage = 'main-page',
     Cartpage = 'cart-page',
 }
+export interface ISource {
+    id: string;
+    title: string;
+    description: string;
+}
 
 class App {
     static container: HTMLElement = document.body;
@@ -45,11 +50,45 @@ class App {
             App.renderNewPage(hash);
         });
     }
+    static errorHandler(res: Response): Response {
+        if (!res.ok) {
+            if (res.status === 401 || res.status === 404)
+                console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
+            throw Error(res.statusText);
+        }
+
+        return res;
+    }
+    static draw(data: ISource[]) {
+        console.log(data);
+        
+        const fragment = document.createDocumentFragment();
+        const sourceItemTemp = document.querySelector('#sourceItemTemp')! as HTMLTemplateElement;
+
+        data.forEach((item) => {
+            const sourceClone = sourceItemTemp.content.cloneNode(true)! as HTMLDivElement;
+
+            (sourceClone.querySelector('.source__item-name') as HTMLTemplateElement).textContent = item.title;
+            (sourceClone.querySelector('.source__item') as HTMLTemplateElement).setAttribute('data-source-id', item.id);
+
+            fragment.append(sourceClone);
+        });
+
+        (document.querySelector('.sources') as HTMLTemplateElement).append(fragment);
+    }
+    static fetchProducts(){
+        fetch('https://dummyjson.com/products')
+            .then(this.errorHandler)
+            .then((res) => res.json())
+            .then((data) => this.draw(data.products))
+            .catch((err) => console.error(err));
+    }
 
     run() {
         App.container.append(this.header.render());
         App.renderNewPage('main-page');
         this.routeChange();
+        App.fetchProducts();
     }
 }
 
