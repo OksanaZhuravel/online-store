@@ -3,6 +3,8 @@ export interface ISource {
     id: string;
     title: string;
     description: string;
+    price: string;
+    images: string[];
 }
 class MainPage extends Page {
     static TextObject = {
@@ -83,9 +85,14 @@ class MainPage extends Page {
         data.forEach((item) => {
             const cardClone = cardTemp.content.cloneNode(true)! as HTMLDivElement;
 
-            (cardClone.querySelector('.card-title') as HTMLTemplateElement).textContent = item.title;
-            (cardClone.querySelector('.card-text') as HTMLTemplateElement).textContent = item.description;
-            (cardClone.querySelector('.card-wrap') as HTMLTemplateElement).setAttribute('data-card-id', item.id);
+            const img = document.createElement('img');
+            img.src = item.images[0];
+
+            (cardClone.querySelector('.product-block__image') as HTMLTemplateElement).append(img);
+            (cardClone.querySelector('.product-block__name') as HTMLTemplateElement).textContent = item.title;
+            (cardClone.querySelector('.product-block__visible-price') as HTMLTemplateElement).textContent = item.price;
+            // (cardClone.querySelector('.card-text') as HTMLTemplateElement).textContent = item.description;
+            (cardClone.querySelector('.product-block') as HTMLTemplateElement).setAttribute('data-card-id', item.id);
 
             fragment.append(cardClone);
         });
