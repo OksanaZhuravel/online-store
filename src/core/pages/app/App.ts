@@ -42,7 +42,6 @@ class App {
     private routeChange() {
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.slice(1);
-            console.log('haksjdfkf', hash);
             App.renderNewPage(hash);
         });
     }
