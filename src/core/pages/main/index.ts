@@ -1,14 +1,14 @@
-import Page from "../../tempates/page";
+import Page from '../../tempates/page';
 
 class MainPage extends Page {
     static TextObject = {
-        MainTitle: 'Main Page'
+        MainTitle: 'Main Page',
+    };
+    constructor(public id: string) {
+        super(id);
     }
-    constructor(public id: string){
-        super(id)
-    }
-    render(){
-        const title = this.createHeaderTitle(MainPage.TextObject.MainTitle)
+    render() {
+        const title = this.createHeaderTitle(MainPage.TextObject.MainTitle);
         this.container.append(title);
         return this.container;
     }

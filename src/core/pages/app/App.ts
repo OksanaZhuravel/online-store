@@ -9,8 +9,8 @@ export const enum PageIds {
 }
 
 class App {
-    static container: HTMLElement = document.body
-    private static defaultPageId: string = 'current-page'
+    static container: HTMLElement = document.body;
+    private static defaultPageId: string = 'current-page';
     private initialPage: MainPage;
     private header: Header;
 
@@ -20,7 +20,7 @@ class App {
     }
 
     static renderNewPage(idPage: string) {
-        const currentPageHTML = document.querySelector(`#${App.defaultPageId}`)
+        const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
         if (currentPageHTML) {
             currentPageHTML.remove();
         }
