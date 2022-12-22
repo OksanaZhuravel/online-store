@@ -1,5 +1,6 @@
 import MainPage from '../main/index';
 import CartPage from '../cart/Cart';
+import ErrorPage from '../error/Error';
 import Page from '../../tempates/page';
 import Header from '../../components/header/Header';
 
@@ -31,6 +32,8 @@ class App {
             page = new MainPage(idPage);
         } else if (idPage === PageIds.Cartpage) {
             page = new CartPage(idPage);
+        } else {
+            page = new ErrorPage(idPage);
         }
 
         if (page) {
