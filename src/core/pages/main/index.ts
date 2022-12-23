@@ -4,6 +4,8 @@ export interface ISource {
     title: string;
     description: string;
     price: string;
+    category: string;
+    brand: string;
     images: string[];
 }
 class MainPage extends Page {
@@ -12,57 +14,50 @@ class MainPage extends Page {
         MainText: `
         <div class="listing">
                 <div class="listing__iner">
-                <div class="listing__grid-aside">
-                    <div class="filter">
-                        <div class="filter-item">
-                            <div class="filter-panel">
-                                <div class="panel__header">
-                                    <div class="panel__header__icon">^</div>
-                                    <span class="filter-panel__title">Цена руб. </span>
-                                </div>
-                                <div class="panel__content">
-                                    <div class="filter-panel__content">
-                                        <div class="filter-range">
-                                            <label class="filter-range__label">
-                                                <input type="number" class="range-input">
-                                                <span class="filter-range__label-text">от</span>
-                                            </label>
-                                            <label class="filter-range__label">
-                                                <input type="number" class="range-input">
-                                                <span class="filter-range__label-text">до</span>
-                                            </label>
+                    <div class="listing__grid-aside">
+                        <div class="filter">
+                            <div class="filter-item">
+                                <div class="filter-panel">
+                                    <div class="panel__header">
+                                        <span class="filter-panel__title">Price</span>
+                                    </div>
+                                    <div class="panel__content">
+                                        <div class="filter-panel__content">
+                                            <div class="filter-range">
+                                                <label class="filter-range__label">
+                                                    <input type="number" class="range-input" />
+                                                    <span class="filter-range__label-text">from</span>
+                                                </label>
+                                                <label class="filter-range__label">
+                                                    <input type="number" class="range-input" />
+                                                    <span class="filter-range__label-text">to</span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-item">
-                            <div class="filter-panel">
-                                <div class="panel__header">
-                                    <div class="panel__header__icon">^</div>
-                                    <span class="filter-panel__title">Цена руб. </span>
-                                </div>
-                                <div class="panel__content">
-                                    <div class="filter-panel__content">
-                                        <div class="filter-range">
-                                            <label class="filter-range__label">
-                                                <input type="number" class="range-input">
-                                                <span class="filter-range__label-text">от</span>
-                                            </label>
-                                            <label class="filter-range__label">
-                                                <input type="number" class="range-input">
-                                                <span class="filter-range__label-text">до</span>
-                                            </label>
+                            <div class="filter-item">
+                                <div class="filter-panel">
+                                    <div class="panel__header">
+                                        <span class="filter-panel__title">Category</span>
+                                    </div>
+                                    <div class="panel__content">
+                                        <div class="filter-panel__content">
+                                            <div class="filter-tags">
+                                                <div class="filter-tags__iner" id="filterCategory">
+                                                    
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="listing__grid-main table">
-                    <div class="listing__generated-container" id="products-list"></div>
-                </div>
+                    <div class="listing__grid-main table">
+                        <div class="listing__generated-container" id="products-list"></div>
+                    </div>
                 </div>
             </div>
         `
@@ -84,8 +79,11 @@ class MainPage extends Page {
         
         const fragment = document.createDocumentFragment();
         const cardTemp = document.querySelector('#cardTemp')! as HTMLTemplateElement;
-
+        let categoryes:string[] = []
         data.forEach((item) => {
+
+            categoryes.push(item.category);
+
             const cardClone = cardTemp.content.cloneNode(true)! as HTMLDivElement;
 
             const img = document.createElement('img');
@@ -93,21 +91,41 @@ class MainPage extends Page {
 
             (cardClone.querySelector('.product-block__image') as HTMLTemplateElement).append(img);
             (cardClone.querySelector('.product-block__name') as HTMLTemplateElement).textContent = item.title;
+            (cardClone.querySelector('.product-block__type') as HTMLTemplateElement).textContent = item.category;
             (cardClone.querySelector('.product-block__visible-price') as HTMLTemplateElement).textContent = item.price;
             // (cardClone.querySelector('.card-text') as HTMLTemplateElement).textContent = item.description;
             (cardClone.querySelector('.product-block') as HTMLTemplateElement).setAttribute('data-card-id', item.id);
 
             fragment.append(cardClone);
         });
-        console.log(fragment);
+
+        categoryes = Array.from(new Set(categoryes));
         
         (document.querySelector('#products-list'))!.append(fragment);
+
+        console.log(data);
+
+        const fragmentTags = document.createDocumentFragment();
+        const tagsTemp = document.querySelector('#categoryTemp')! as HTMLTemplateElement;
+
+        categoryes.forEach((category) => {
+
+            const tagClone = tagsTemp.content.cloneNode(true)! as HTMLDivElement;
+            (tagClone.querySelector('.tag__name') as HTMLTemplateElement).textContent = category;
+
+            fragmentTags.append(tagClone);
+        });
+        
+        (document.querySelector('#filterCategory'))!.append(fragmentTags);
+        
     }
     static fetchProducts(){
         fetch('https://dummyjson.com/products')
             .then(this.errorHandler)
             .then((res) => res.json())
-            .then((data) => this.draw(data.products))
+            .then((data) => {
+                this.draw(data.products);
+            } )
             .catch((err) => console.error(err));
     }
     render() {

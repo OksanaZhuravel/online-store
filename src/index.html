@@ -12,58 +12,68 @@
         <main id="main">
             <div class="listing">
                 <div class="listing__iner">
-                <div class="listing__grid-aside">
-                    <div class="filter">
-                        <div class="filter-item">
-                            <div class="filter-panel">
-                                <div class="panel__header">
-                                    <div class="panel__header__icon">^</div>
-                                    <span class="filter-panel__title">Цена руб. </span>
-                                </div>
-                                <div class="panel__content">
-                                    <div class="filter-panel__content">
-                                        <div class="filter-range">
-                                            <label class="filter-range__label">
-                                                <input type="number" class="range-input">
-                                                <span class="filter-range__label-text">от</span>
-                                            </label>
-                                            <label class="filter-range__label">
-                                                <input type="number" class="range-input">
-                                                <span class="filter-range__label-text">до</span>
-                                            </label>
+                    <div class="listing__grid-aside">
+                        <div class="filter">
+                            <div class="filter-item">
+                                <div class="filter-panel">
+                                    <div class="panel__header">
+                                        <span class="filter-panel__title">Price</span>
+                                    </div>
+                                    <div class="panel__content">
+                                        <div class="filter-panel__content">
+                                            <div class="filter-range">
+                                                <label class="filter-range__label">
+                                                    <input type="number" class="range-input" />
+                                                    <span class="filter-range__label-text">from</span>
+                                                </label>
+                                                <label class="filter-range__label">
+                                                    <input type="number" class="range-input" />
+                                                    <span class="filter-range__label-text">to</span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter-item">
-                            <div class="filter-panel">
-                                <div class="panel__header">
-                                    <div class="panel__header__icon">^</div>
-                                    <span class="filter-panel__title">Цена руб. </span>
-                                </div>
-                                <div class="panel__content">
-                                    <div class="filter-panel__content">
-                                        <div class="filter-range">
-                                            <label class="filter-range__label">
-                                                <input type="number" class="range-input">
-                                                <span class="filter-range__label-text">от</span>
-                                            </label>
-                                            <label class="filter-range__label">
-                                                <input type="number" class="range-input">
-                                                <span class="filter-range__label-text">до</span>
-                                            </label>
+                            <div class="filter-item">
+                                <div class="filter-panel">
+                                    <div class="panel__header">
+                                        <span class="filter-panel__title">Category</span>
+                                    </div>
+                                    <div class="panel__content">
+                                        <div class="filter-panel__content">
+                                            <div class="filter-tags">
+                                                <div class="filter-tags__iner" id="filterCategory">
+                                                </div>
+                                                <div class="filter-tags__iner" id="filterBrand">
+                                                    <div class="tag tag-gray">
+                                                        <span class="tag__name">Samsung</span>
+                                                        <div class="tag__count">123</div>
+                                                    </div>
+                                                    <div class="tag tag-gray">
+                                                        <span class="tag__name">Apple</span>
+                                                        <div class="tag__count">10</div>
+                                                    </div>
+                                                    <div class="tag tag-gray">
+                                                        <span class="tag__name">Samsung</span>
+                                                        <div class="tag__count">123</div>
+                                                    </div>
+                                                    <div class="tag tag-gray">
+                                                        <span class="tag__name">Samsung</span>
+                                                        <div class="tag__count">123</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="listing__grid-main table">
+                        <div class="listing__generated-container" id="products-list"></div>
+                    </div>
                 </div>
-                <div class="listing__grid-main table">
-                    <div class="listing__generated-container" id="products-list"></div>
-                </div>
-                        </div>
             </div>
         </main>
 
@@ -87,6 +97,12 @@
                         <a href="" class="main-btn_buy"></a>
                     </div>
                 </div>
+            </div>
+        </template>
+
+        <template id="categoryTemp">
+            <div class="tag tag-gray">
+                <span class="tag__name"></span>
             </div>
         </template>
     </body>
