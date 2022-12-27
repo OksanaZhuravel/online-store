@@ -1,23 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
-    <title>Online-store</title>
-</head>
-<body>
-    <header id="header">
-    </header>
-    <main id="main">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon" />
+        <title>Online-store</title>
+    </head>
+    <body>
+        <header id="header"></header>
+        <main id="main">
+            <div class="listing">
+                <div class="listing__iner">
+                    <div class="listing__grid-aside">
+                        <div class="filter">
+                            <div class="filter-item">
+                                <div class="filter-panel">
+                                    <div class="panel__header">
+                                        <span class="filter-panel__title">Price</span>
+                                    </div>
+                                    <div class="panel__content">
+                                        <div class="filter-panel__content">
+                                            <div class="filter-range">
+                                                <label class="filter-range__label">
+                                                    <input type="number" class="range-input" />
+                                                    <span class="filter-range__label-text">from</span>
+                                                </label>
+                                                <label class="filter-range__label">
+                                                    <input type="number" class="range-input" />
+                                                    <span class="filter-range__label-text">to</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-item">
+                                <div class="filter-panel">
+                                    <div class="panel__header">
+                                        <span class="filter-panel__title">Category</span>
+                                    </div>
+                                    <div class="panel__content">
+                                        <div class="filter-panel__content">
+                                            <div class="filter-tags">
+                                                <div class="filter-tags__iner" id="filterCategory">
+                                                </div>
+                                                <div class="filter-tags__iner" id="filterBrand">
+                                                    <div class="tag tag-gray">
+                                                        <span class="tag__name">Samsung</span>
+                                                        <div class="tag__count">123</div>
+                                                    </div>
+                                                    <div class="tag tag-gray">
+                                                        <span class="tag__name">Apple</span>
+                                                        <div class="tag__count">10</div>
+                                                    </div>
+                                                    <div class="tag tag-gray">
+                                                        <span class="tag__name">Samsung</span>
+                                                        <div class="tag__count">123</div>
+                                                    </div>
+                                                    <div class="tag tag-gray">
+                                                        <span class="tag__name">Samsung</span>
+                                                        <div class="tag__count">123</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="listing__grid-main table">
+                        <div class="listing__generated-container" id="products-list"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-    </main>
-    <div class="sources buttons"></div>
-    <template id="sourceItemTemp">
-        <div class="source__item">
-            <span class="source__item-name"></span>
-        </div>
-    </template>
-</body>
+        <template id="cardTemp">
+            <div class="product-block">
+                <div class="product-block__bg">&nbsp;</div>
+                <div class="product-block__content">
+                    <a href="" class="product-block__wishlist"></a>
+                    <div class="product-block__image"></div>
+                    <div class="product-block__info">
+                        <a href="" class="product-block__main-link">
+                            <span class="product-block__type"></span>
+                            <span class="product-block__name"></span>
+                        </a>
+                    </div>
+                    <div class="product-block__misc">
+                        <div class="product-block__price-block">
+                            <span class="product-block__visible-price"></span>
+                            <span class="currency">€</span>
+                        </div>
+                        <a href="" class="main-btn_buy"></a>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="categoryTemp">
+            <div class="tag tag-gray">
+                <span class="tag__name"></span>
+            </div>
+        </template>
+    </body>
 </html>
