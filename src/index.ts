@@ -1,4 +1,4 @@
 import App from './core/pages/app/App';
-import './index.scss';
+import './index.css';
 const app = new App();
 app.run();

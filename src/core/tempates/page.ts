@@ -10,6 +10,11 @@ abstract class Page {
         title.innerHTML = text;
         return title;
     }
+    protected createPage(text: string) {
+        const title = document.createElement('div');
+        title.innerHTML = text;
+        return title;
+    }
 
     render() {
         return this.container;
