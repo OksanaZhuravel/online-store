@@ -1,14 +1,14 @@
 import Page from '../../tempates/page';
-
-export interface ISource {
-    id: string;
-    title: string;
-    description: string;
-    price: string;
-    category: string;
-    brand: string;
-    images: string[];
-}
+import { ISource } from '../../interfaces/Products';
+// export interface ISource {
+//     id: string;
+//     title: string;
+//     description: string;
+//     price: string;
+//     category: string;
+//     brand: string;
+//     images: string[];
+// }
 
 class MainPage extends Page {
     static TextObject = {
@@ -48,7 +48,6 @@ class MainPage extends Page {
                                         <div class="filter-panel__content">
                                             <div class="filter-tags">
                                                 <div class="filter-tags__iner" id="filterCategory">
-                                                    
                                                 </div>
                                             </div>
                                         </div>

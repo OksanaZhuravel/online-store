@@ -12,7 +12,7 @@ export interface ISource {
     discountPercentage: string;
     images: AImage;
     thumbnail: string;
-    price: number;
+    price: string;
     rating: number;
     stock: number;
 }

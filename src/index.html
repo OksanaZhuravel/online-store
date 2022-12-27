@@ -8,59 +8,60 @@
         <title>Online-store</title>
     </head>
     <body>
-        <header id="header"></header>
-        <main id="main">
-            <div class="listing">
-                <div class="listing__iner">
-                    <div class="listing__grid-aside">
-                        <div class="filter">
-                            <div class="filter-item">
-                                <div class="filter-panel">
-                                    <div class="panel__header">
-                                        <span class="filter-panel__title">Price</span>
-                                    </div>
-                                    <div class="panel__content">
-                                        <div class="filter-panel__content">
-                                            <div class="filter-range">
-                                                <label class="filter-range__label">
-                                                    <input type="number" class="range-input" />
-                                                    <span class="filter-range__label-text">from</span>
-                                                </label>
-                                                <label class="filter-range__label">
-                                                    <input type="number" class="range-input" />
-                                                    <span class="filter-range__label-text">to</span>
-                                                </label>
+        <div class="wrapper">
+            <header class="header"></header>
+            <main id="main">
+                <div class="listing">
+                    <div class="listing__iner">
+                        <div class="listing__grid-aside">
+                            <div class="filter">
+                                <div class="filter-item">
+                                    <div class="filter-panel">
+                                        <div class="panel__header">
+                                            <span class="filter-panel__title">Price</span>
+                                        </div>
+                                        <div class="panel__content">
+                                            <div class="filter-panel__content">
+                                                <div class="filter-range">
+                                                    <label class="filter-range__label">
+                                                        <input type="number" class="range-input" />
+                                                        <span class="filter-range__label-text">from</span>
+                                                    </label>
+                                                    <label class="filter-range__label">
+                                                        <input type="number" class="range-input" />
+                                                        <span class="filter-range__label-text">to</span>
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="filter-item">
-                                <div class="filter-panel">
-                                    <div class="panel__header">
-                                        <span class="filter-panel__title">Category</span>
-                                    </div>
-                                    <div class="panel__content">
-                                        <div class="filter-panel__content">
-                                            <div class="filter-tags">
-                                                <div class="filter-tags__iner" id="filterCategory">
-                                                </div>
-                                                <div class="filter-tags__iner" id="filterBrand">
-                                                    <div class="tag tag-gray">
-                                                        <span class="tag__name">Samsung</span>
-                                                        <div class="tag__count">123</div>
-                                                    </div>
-                                                    <div class="tag tag-gray">
-                                                        <span class="tag__name">Apple</span>
-                                                        <div class="tag__count">10</div>
-                                                    </div>
-                                                    <div class="tag tag-gray">
-                                                        <span class="tag__name">Samsung</span>
-                                                        <div class="tag__count">123</div>
-                                                    </div>
-                                                    <div class="tag tag-gray">
-                                                        <span class="tag__name">Samsung</span>
-                                                        <div class="tag__count">123</div>
+                                <div class="filter-item">
+                                    <div class="filter-panel">
+                                        <div class="panel__header">
+                                            <span class="filter-panel__title">Category</span>
+                                        </div>
+                                        <div class="panel__content">
+                                            <div class="filter-panel__content">
+                                                <div class="filter-tags">
+                                                    <div class="filter-tags__iner" id="filterCategory"></div>
+                                                    <div class="filter-tags__iner" id="filterBrand">
+                                                        <div class="tag tag-gray">
+                                                            <span class="tag__name">Samsung</span>
+                                                            <div class="tag__count">123</div>
+                                                        </div>
+                                                        <div class="tag tag-gray">
+                                                            <span class="tag__name">Apple</span>
+                                                            <div class="tag__count">10</div>
+                                                        </div>
+                                                        <div class="tag tag-gray">
+                                                            <span class="tag__name">Samsung</span>
+                                                            <div class="tag__count">123</div>
+                                                        </div>
+                                                        <div class="tag tag-gray">
+                                                            <span class="tag__name">Samsung</span>
+                                                            <div class="tag__count">123</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -69,14 +70,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="listing__grid-main table">
-                        <div class="listing__generated-container" id="products-list"></div>
+                        <div class="listing__grid-main table">
+                            <div class="listing__generated-container" id="products-list"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
-
+            </main>
+            <footer class="footer"></footer>
+        </div>
         <template id="cardTemp">
             <div class="product-block">
                 <div class="product-block__bg">&nbsp;</div>
@@ -99,7 +100,6 @@
                 </div>
             </div>
         </template>
-
         <template id="categoryTemp">
             <div class="tag tag-gray">
                 <span class="tag__name"></span>
