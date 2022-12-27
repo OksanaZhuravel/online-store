@@ -3,6 +3,7 @@ import CartPage from '../cart/Cart';
 import ErrorPage from '../error/Error';
 import Page from '../../tempates/page';
 import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 
 export const enum PageIds {
     Mainpage = 'main-page',
@@ -14,10 +15,12 @@ class App {
     private static defaultPageId: string = 'current-page';
     private initialPage: MainPage;
     private header: Header;
+    private footer: Footer;
 
     constructor() {
         this.initialPage = new MainPage('main-page');
         this.header = new Header('header', 'header');
+        this.footer = new Footer('footer', 'footer');
     }
 
     static renderNewPage(idPage: string) {
@@ -54,6 +57,7 @@ class App {
         this.header.render();
         App.renderNewPage('main-page');
         this.routeChange();
+        this.footer.render();
     }
 }
 
