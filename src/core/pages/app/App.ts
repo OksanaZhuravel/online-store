@@ -1,5 +1,6 @@
 import MainPage from '../main/index';
 import CartPage from '../cart/Cart';
+import ProductPage from '../product/product';
 import ErrorPage from '../error/Error';
 import Page from '../../tempates/page';
 import Header from '../../components/header/Header';
@@ -8,6 +9,7 @@ import Footer from '../../components/footer/Footer';
 export const enum PageIds {
     Mainpage = 'main-page',
     Cartpage = 'cart-page',
+    Productpage = 'products/1',
 }
 
 class App {
@@ -23,7 +25,7 @@ class App {
         this.footer = new Footer('footer', 'footer');
     }
 
-    static renderNewPage(idPage: string) {
+    static renderNewPage(idPage: string, idProduct?: string) {
         this.container.innerHTML = '';
         const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
         if (currentPageHTML) {
@@ -35,6 +37,8 @@ class App {
             page = new MainPage(idPage);
         } else if (idPage === PageIds.Cartpage) {
             page = new CartPage(idPage);
+        } else if (idPage === PageIds.Productpage) {
+            page = new ProductPage(idPage,idProduct);
         } else {
             page = new ErrorPage(idPage);
         }
@@ -49,7 +53,10 @@ class App {
     private routeChange() {
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.slice(1);
-            App.renderNewPage(hash);
+            const id = window.location.hash.slice(10);
+            console.log({id});
+            
+            App.renderNewPage(hash,id);
         });
     }
 
