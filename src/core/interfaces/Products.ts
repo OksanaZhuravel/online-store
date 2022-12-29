@@ -16,3 +16,4 @@ export interface ISource {
     rating: number;
     stock: number;
 }
+
