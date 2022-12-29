@@ -38,7 +38,7 @@ class App {
         } else if (idPage === PageIds.Cartpage) {
             page = new CartPage(idPage);
         } else if (idPage === PageIds.Productpage) {
-            page = new ProductPage(idPage,idProduct);
+            page = new ProductPage(idPage, idProduct);
         } else {
             page = new ErrorPage(idPage);
         }
@@ -54,15 +54,16 @@ class App {
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.slice(1);
             const id = window.location.hash.slice(10);
-            console.log({id});
-            
-            App.renderNewPage(hash,id);
+            console.log({ id });
+
+            App.renderNewPage(hash, id);
         });
     }
 
     run() {
         this.header.render();
         App.renderNewPage('main-page');
+        window.location.hash = 'main-page';
         this.routeChange();
         this.footer.render();
     }

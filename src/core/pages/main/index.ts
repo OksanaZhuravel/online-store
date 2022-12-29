@@ -1,5 +1,6 @@
 import Page from '../../tempates/page';
-import { ISource } from '../../interfaces/Products'
+import { ISource } from '../../interfaces/Products';
+import Controller from '../../controller';
 class MainPage extends Page {
     static TextObject = {
         MainTitle: '',
@@ -41,15 +42,6 @@ class MainPage extends Page {
     constructor(public id: string) {
         super(id);
     }
-    static errorHandler(res: Response): Response {
-        if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
-                console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
-            throw Error(res.statusText);
-        }
-
-        return res;
-    }
     static draw(data: ISource[]) {
         const filters = ['category', 'brand'];
         console.log(data);
@@ -71,7 +63,6 @@ class MainPage extends Page {
             (cardClone.querySelector('.product-block__name') as HTMLTemplateElement).textContent = item.title;
             (cardClone.querySelector('.product-block__type') as HTMLTemplateElement).textContent = item.category;
             (cardClone.querySelector('.product-block__visible-price') as HTMLTemplateElement).textContent = item.price;
-            // (cardClone.querySelector('.card-text') as HTMLTemplateElement).textContent = item.description;
             (cardClone.querySelector('.product-block') as HTMLTemplateElement).setAttribute('data-card-id', item.id);
             (cardClone.querySelector('.main-btn_buy') as HTMLLinkElement).href = `#products/${item.id}`;
 
@@ -81,27 +72,24 @@ class MainPage extends Page {
         categoryes = Array.from(new Set(categoryes));
         brands = Array.from(new Set(brands));
 
-        console.log({brands});
-        
-
         document.querySelector('#products-list')!.append(fragment);
-
-        console.log(data);
 
         // Filter Item clone
 
         filters.forEach((filter) => {
-            // Categoryes  
+            // Categoryes
             if (filter === 'category') {
                 // берем темплейт фильтер итема категорий и вставляем его
-            const fragmentFilterItemCategory = document.createDocumentFragment();
-            const filterItemCategoryTemp = document.querySelector('#filterItemCategory')! as HTMLTemplateElement;
+                const fragmentFilterItemCategory = document.createDocumentFragment();
+                const filterItemCategoryTemp = document.querySelector('#filterItemCategory')! as HTMLTemplateElement;
 
-            const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true)! as HTMLDivElement;
+                const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true)! as HTMLDivElement;
 
-            (filterItemCategoryClone.querySelector('.filter-panel__title') as HTMLTemplateElement).textContent = filter;
-            fragmentFilterItemCategory.append(filterItemCategoryClone);
-            document.querySelector('#filterInner')!.append(fragmentFilterItemCategory);
+                (filterItemCategoryClone.querySelector(
+                    '.filter-panel__title'
+                ) as HTMLTemplateElement).textContent = filter;
+                fragmentFilterItemCategory.append(filterItemCategoryClone);
+                document.querySelector('#filterInner')!.append(fragmentFilterItemCategory);
                 // берем темлейт тегов категорий и вставляем каждую категорию
                 const fragmentTags = document.createDocumentFragment();
                 const tagsTemp = document.querySelector('#categoryTemp')! as HTMLTemplateElement;
@@ -115,29 +103,25 @@ class MainPage extends Page {
 
                 document.querySelector('#filterCategory')!.append(fragmentTags);
 
-             // brands
-             
-            } 
-            else if (filter === 'brand') {
-                console.log('filter === brand');
-                
-            // берем темплейт фильтер итема категорий и вставляем его
-            const fragmentFilterItemBrand = document.createDocumentFragment();
-            const filterItemCategoryTemp = document.querySelector('#filterItemBrand')! as HTMLTemplateElement;
+                // brands
+            } else if (filter === 'brand') {
+                // берем темплейт фильтер итема категорий и вставляем его
+                const fragmentFilterItemBrand = document.createDocumentFragment();
+                const filterItemCategoryTemp = document.querySelector('#filterItemBrand')! as HTMLTemplateElement;
 
-            const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true)! as HTMLDivElement;
+                const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true)! as HTMLDivElement;
 
-            (filterItemCategoryClone.querySelector('.filter-panel__title') as HTMLTemplateElement).textContent = filter;
-            fragmentFilterItemBrand.append(filterItemCategoryClone);
-            document.querySelector('#filterInner')!.append(fragmentFilterItemBrand);
+                (filterItemCategoryClone.querySelector(
+                    '.filter-panel__title'
+                ) as HTMLTemplateElement).textContent = filter;
+                fragmentFilterItemBrand.append(filterItemCategoryClone);
+                document.querySelector('#filterInner')!.append(fragmentFilterItemBrand);
 
-            // берем темлейт тегов категорий и вставляем каждый бренд
-            const fragmentTags = document.createDocumentFragment();
-            const tagsTemp = document.querySelector('#categoryTemp')! as HTMLTemplateElement;
+                // берем темлейт тегов категорий и вставляем каждый бренд
+                const fragmentTags = document.createDocumentFragment();
+                const tagsTemp = document.querySelector('#categoryTemp')! as HTMLTemplateElement;
 
                 brands.forEach((brand) => {
-                    console.log({brand});
-                    
                     const tagClone = tagsTemp.content.cloneNode(true)! as HTMLDivElement;
                     (tagClone.querySelector('.tag__name') as HTMLTemplateElement).textContent = brand;
                     (tagClone.querySelector('.tag__name') as HTMLLinkElement).href = `#${brand.toLocaleLowerCase()}`;
@@ -148,21 +132,15 @@ class MainPage extends Page {
             }
         });
     }
-    static fetchProducts() {
-        fetch('https://dummyjson.com/products')
-            .then(this.errorHandler)
-            .then((res) => res.json())
-            .then((data) => {
-                this.draw(data.products);
-            })
-            .catch((err) => console.error(err));
+    async fetchProducts() {
+        await new Controller().frendsRout().then((data) => {
+            MainPage.draw(data.products);
+        });
     }
     render() {
-        const title = this.createHeaderTitle(MainPage.TextObject.MainTitle);
         const text = this.createPage(MainPage.TextObject.MainText);
-        this.container.append(title);
         this.container.append(text);
-        MainPage.fetchProducts();
+        this.fetchProducts();
         return this.container;
     }
 }
