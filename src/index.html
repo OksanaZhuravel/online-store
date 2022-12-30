@@ -10,8 +10,8 @@
     <body>
         <div class="wrapper">
             <header class="header"></header>
-            <main id="main">
-                <div class="listing">
+            <main class="main" id="main">
+                <!-- <div class="listing">
                     <div class="listing__iner">
                         <div class="listing__grid-aside">
                             <div class="filter" id="filterInner">
@@ -42,33 +42,39 @@
                             <div class="listing__generated-container" id="products-list"></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </main>
             <footer class="footer"></footer>
         </div>
+        <!-- карточка -->
         <template id="cardTemp">
-            <div class="product-block">
-                <div class="product-block__bg">&nbsp;</div>
-                <div class="product-block__content">
-                    <a href="" class="product-block__wishlist"></a>
-                    <div class="product-block__image"></div>
-                    <div class="product-block__info">
-                        <a href="" class="product-block__main-link">
-                            <span class="product-block__type"></span>
-                            <span class="product-block__name"></span>
-                        </a>
-                    </div>
-                    <div class="product-block__misc">
-                        <div class="product-block__price-block">
-                            <span class="product-block__visible-price"></span>
-                            <span class="currency">€</span>
+            <article class="product">
+                <div class="product__sale"></div>
+                <a  href="" class="product__image"><span class="product__item-image-ibg product__item-image-ibg--contain"></a>
+                <div class="product__body">
+                    <h4 class="product__title"><a href="" class="product__link-title"></a></h4>
+                    <div class="product__info info-product">
+                        <div class="info-product__wrapper">
+                            <span class="info-product__text brand brand--label">Brand:</span>
+                            <span class="info-product__text brand brand--value"></span>
                         </div>
-                        <a href="" class="main-btn_buy"></a>
+                        <div class="info-product__wrapper">
+                            <span class="info-product__text category category--label">Category:</span>
+                            <span class="info-product__text category category--value"></span>
+                        </div>
                     </div>
+                        <div class="product__rating">
+                            <div class="rating__value">3.6</div>
+                        </div>
+                        <div class="product__footer">
+                            <div class="product__price"></div>
+                            <a href="" class="product__favorite _icon-favorite"></a>
+                        </div>
+                        <button type="button" class="product__cart button _icon-cart"><span>Buy</span></button>
                 </div>
-            </div>
+            </article>
         </template>
-
+        <!-- боковая панель категория и бренд -->
         <template id="categoryTemp">
             <div class="tag tag-gray">
                 <a href="#categoryes" class="tag__name"></a>
