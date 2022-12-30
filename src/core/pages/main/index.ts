@@ -7,7 +7,6 @@ class MainPage extends Page {
         className: 'catalog',
         // MainTitle: '',
         Catalog: `
-        <div class="catalog__container">
         <div class="catalog__body">
             <div class="catalog__filter filter" id="filterInner">
                 <button class="filter__title">Filtrs products</button>
@@ -79,8 +78,7 @@ class MainPage extends Page {
                     </div>
                 </div>
             </div>
-        </div>
-    </div>`,
+        </div>`,
         // MainText: `
         // <div class="listing">
         //             <div class="listing__iner">
