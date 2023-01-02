@@ -81,13 +81,15 @@ class MainPage extends Page {
         const filters = ['category', 'brand'];
         // console.log(data);
         const fragment = document.createDocumentFragment();
-        const cardTemp = document.querySelector('#cardTemp')! as HTMLTemplateElement;
+        const cardTemp = document.querySelector('#cardTemp') as HTMLTemplateElement;
+        console.log(cardTemp);
+
         let categoryes: string[] = [];
         let brands: string[] = [];
         data.forEach((item) => {
             categoryes.push(item.category);
             brands.push(item.brand);
-            const cardClone = cardTemp.content.cloneNode(true)! as HTMLDivElement;
+            const cardClone = cardTemp.content.cloneNode(true) as HTMLDivElement;
             const img = document.createElement('img');
             img.src = item.images[0];
             img.alt = item.title;
@@ -116,8 +118,8 @@ class MainPage extends Page {
             if (filter === 'category') {
                 // берем темплейт фильтер итема категорий и вставляем его
                 const fragmentFilterItemCategory = document.createDocumentFragment();
-                const filterItemCategoryTemp = document.querySelector('#filterItemCategory')! as HTMLTemplateElement;
-                const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true)! as HTMLDivElement;
+                const filterItemCategoryTemp = document.querySelector('#filterItemCategory') as HTMLTemplateElement;
+                const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true) as HTMLDivElement;
                 (filterItemCategoryClone.querySelector(
                     '.item-catalog__title'
                 ) as HTMLTemplateElement).textContent = filter;
@@ -125,9 +127,9 @@ class MainPage extends Page {
                 document.querySelector('#filterInner')?.append(fragmentFilterItemCategory);
                 // берем темлейт тегов категорий и вставляем каждую категорию
                 const fragmentTags = document.createDocumentFragment();
-                const tagsTemp = document.querySelector('#categoryTemp')! as HTMLTemplateElement;
+                const tagsTemp = document.querySelector('#categoryTemp') as HTMLTemplateElement;
                 categoryes.forEach((category) => {
-                    const tagClone = tagsTemp.content.cloneNode(true)! as HTMLDivElement;
+                    const tagClone = tagsTemp.content.cloneNode(true) as HTMLDivElement;
                     (tagClone.querySelector('.item-catalog__name') as HTMLTemplateElement).textContent = category;
                     (tagClone.querySelector(
                         '.item-catalog__name'
@@ -139,8 +141,8 @@ class MainPage extends Page {
             } else if (filter === 'brand') {
                 // берем темплейт фильтер итема категорий и вставляем его
                 const fragmentFilterItemBrand = document.createDocumentFragment();
-                const filterItemCategoryTemp = document.querySelector('#filterItemBrand')! as HTMLTemplateElement;
-                const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true)! as HTMLDivElement;
+                const filterItemCategoryTemp = document.querySelector('#filterItemBrand') as HTMLTemplateElement;
+                const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true) as HTMLDivElement;
                 (filterItemCategoryClone.querySelector(
                     '.item-catalog__title'
                 ) as HTMLTemplateElement).textContent = filter;
@@ -148,9 +150,9 @@ class MainPage extends Page {
                 document.querySelector('#filterInner')?.append(fragmentFilterItemBrand);
                 // берем темлейт тегов категорий и вставляем каждый бренд
                 const fragmentTags = document.createDocumentFragment();
-                const tagsTemp = document.querySelector('#categoryTemp')! as HTMLTemplateElement;
+                const tagsTemp = document.querySelector('#categoryTemp') as HTMLTemplateElement;
                 brands.forEach((brand) => {
-                    const tagClone = tagsTemp.content.cloneNode(true)! as HTMLDivElement;
+                    const tagClone = tagsTemp.content.cloneNode(true) as HTMLDivElement;
                     (tagClone.querySelector('.item-catalog__name') as HTMLTemplateElement).textContent = brand;
                     (tagClone.querySelector(
                         '.item-catalog__name'
