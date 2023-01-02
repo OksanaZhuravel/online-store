@@ -11,42 +11,9 @@
         <div class="wrapper">
             <header class="header"></header>
             <main class="main" id="main">
-                <!-- <div class="listing">
-                    <div class="listing__iner">
-                        <div class="listing__grid-aside">
-                            <div class="filter" id="filterInner">
-                                <div class="filter-item">
-                                    <div class="filter-panel">
-                                        <div class="panel__header">
-                                            <span class="filter-panel__title">Price</span>
-                                        </div>
-                                        <div class="panel__content">
-                                            <div class="filter-panel__content">
-                                                <div class="filter-range">
-                                                    <label class="filter-range__label">
-                                                        <input type="number" class="range-input" />
-                                                        <span class="filter-range__label-text">from</span>
-                                                    </label>
-                                                    <label class="filter-range__label">
-                                                        <input type="number" class="range-input" />
-                                                        <span class="filter-range__label-text">to</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="listing__grid-main table">
-                            <div class="listing__generated-container" id="products-list"></div>
-                        </div>
-                    </div>
-                </div> -->
             </main>
             <footer class="footer"></footer>
         </div>
-        <!-- карточка -->
         <template id="cardTemp">
             <article class="product">
                 <div class="product__sale"></div>
@@ -63,7 +30,7 @@
                             <span class="info-product__text category category--value"></span>
                         </div>
                     </div>
-                        <div class="product__rating">
+                        <div class="product__rating rating">
                             <div class="rating__value">3.6</div>
                         </div>
                         <div class="product__footer">
@@ -74,42 +41,21 @@
                 </div>
             </article>
         </template>
-        <!-- боковая панель категория и бренд -->
         <template id="categoryTemp">
-            <div class="tag tag-gray">
-                <a href="#categoryes" class="tag__name"></a>
+            <div class="item-catalog__inner">
+                <a href="#categoryes" class="item-catalog__name"></a>
             </div>
         </template>
         <template id="filterItemCategory">
-            <div class="filter-item">
-                <div class="filter-panel">
-                    <div class="panel__header">
-                        <span class="filter-panel__title">Category</span>
-                    </div>
-                    <div class="panel__content">
-                        <div class="filter-panel__content">
-                            <div class="filter-tags">
-                                <div class="filter-tags__iner" id="filterCategory"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="filter__item item-catalog">
+                <button type="button" class="item-catalog__title">Category</button>
+                <div class="item-catalog__body" id="filterCategory"></div>
             </div>
         </template>
         <template id="filterItemBrand">
-            <div class="filter-item">
-                <div class="filter-panel">
-                    <div class="panel__header">
-                        <span class="filter-panel__title">Brand</span>
-                    </div>
-                    <div class="panel__content">
-                        <div class="filter-panel__content">
-                            <div class="filter-tags">
-                                <div class="filter-tags__iner" id="filterBrand"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="filter__item item-catalog">
+                <button type="button" class="item-catalog__title">Brand</button>
+                <div class="item-catalog__body" id="filterBrand"></div>
             </div>
         </template>
     </body>

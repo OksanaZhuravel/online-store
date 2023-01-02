@@ -21,7 +21,8 @@
     &__products {
         display: grid;
         gap: rem(30);
-        grid-template-columns: repeat(auto-fit, minmax(rem(290), 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(rem(250), 1fr));
+        // grid-template-columns: repeat(auto-fit, minmax(rem(290), 1fr));
         &:not(:last-child) {
             margin-bottom: rem(30);
         }
@@ -114,8 +115,7 @@
 //==========================================================================================================================================
 
 .item-catalog {
-    // background-color: $bagAcent;
-    // background-color: rgba($color: $mainColor, $alpha: 0.5);
+    padding: rem(10) 0;
     &__title {
         width: 100%;
         padding: 0 rem(20);
@@ -123,10 +123,39 @@
         font-size: rem(20);
         color: $mainColor;
         text-align: right;
+        text-transform: capitalize;
     }
 
     &__body {
-        padding: rem(20) rem(10);
+        padding: rem(10);
+        display: flex;
+        flex-flow: row wrap;
+        gap: rem(10);
+        align-items: center;
+        // justify-content: space-between;
+    }
+    &__inner {
+        &:not(:last-child) {
+            & a::after {
+                content: '';
+                border-right: 1px solid $mainColor;
+                padding-left: rem(5);
+            }
+        }
+    }
+
+    &__name {
+        display: block;
+        padding-bottom: rem(5);
+        border-bottom: 1px solid transparent;
+        transition: all 0.6s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                color: $acent;
+                border-bottom: 1px solid $acent;
+            }
+        }
     }
 }
 //==========================================================================================================================================
@@ -349,3 +378,4 @@
         }
     }
 }
+//==========================================================================================================================================

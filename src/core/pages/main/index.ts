@@ -5,114 +5,73 @@ class MainPage extends Page {
     static TextObject = {
         tagName: 'div',
         className: 'catalog',
-        // MainTitle: '',
         Catalog: `
-        <div class="catalog__body">
-            <div class="catalog__filter filter" id="filterInner">
-                <button class="filter__title">Filtrs products</button>
-                <div class="filter__items">
-                    <div class="filter__price price-filter">
-                        <button type="button" class="price-filter__title">Price</button>
-                        <div data-range class="price-filter__body">
-                            <div class="price-filter__inputs">
-                                <input
-                                    data-range-from="0"
-                                    autocomplete="off"
-                                    type="text"
-                                    value="500"
-                                    name="form[]"
-                                    class="price-filter__input"
-                                />
-                                <input
-                                    data-range-to="5000"
-                                    autocomplete="off"
-                                    type="text"
-                                    value="2000"
-                                    name="form[]"
-                                    class="price-filter__input"
-                                />
+        <div class="catalog__container">
+            <div class="catalog__body">
+                <div class="catalog__filter filter" id="filterInner">
+                    <button class="filter__title">Filtrs products</button>
+                    <div class="filter__items">
+                        <div class="filter__price price-filter">
+                            <button type="button" class="price-filter__title">Price</button>
+                            <div data-range class="price-filter__body">
+                                <div class="price-filter__inputs">
+                                    <input
+                                        data-range-from="0"
+                                        autocomplete="off"
+                                        type="text"
+                                        value="500"
+                                        name="form[]"
+                                        class="price-filter__input"
+                                    />
+                                    <input
+                                        data-range-to="5000"
+                                        autocomplete="off"
+                                        type="text"
+                                        value="2000"
+                                        name="form[]"
+                                        class="price-filter__input"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="filter__item item-catalog">
-                        <button type="button" class="item-catalog__title">Category</button>
-                        <div class="item-catalog__body" id="filterCategory"></div>
-                    </div>
-                    <div class="filter__item item-catalog">
-                        <button type="button" class="item-catalog__title">Brand</button>
-                        <div class="item-catalog__body" id="filterBrand"></div>
-                    </div>
                 </div>
-            </div>
-            <div class="catalog__content">
-                <div class="catalog__products"></div>
-                <div class="catalog__footer">
-                    <a href="" class="catalog__more button">Show more</a>
-                    <div class="catalog__pagging pagging">
-                        <button
-                            disabled
-                            type="button"
-                            class="pagging__arrow pagging__arrow--left _icon-arrow-down"
-                        ></button>
-                        <ul class="pagging__list">
-                            <li class="pagging__item">
-                                <a href="" class="pagging__link active">1</a>
-                            </li>
-                            <li class="pagging__item">
-                                <a href="" class="pagging__link">2</a>
-                            </li>
-                            <li class="pagging__item">
-                                <a href="" class="pagging__link">3</a>
-                            </li>
-                            <li class="pagging__item">
-                                <a href="" class="pagging__link">...</a>
-                            </li>
-                            <li class="pagging__item">
-                                <a href="" class="pagging__link">15</a>
-                            </li>
-                        </ul>
-                        <button
-                            type="button"
-                            class="pagging__arrow pagging__arrow--right _icon-arrow-down"
-                        ></button>
+                <div class="catalog__content">
+                    <div class="catalog__products"></div>
+                    <div class="catalog__footer">
+                        <a href="" class="catalog__more button">Show more</a>
+                        <div class="catalog__pagging pagging">
+                            <button
+                                disabled
+                                type="button"
+                                class="pagging__arrow pagging__arrow--left _icon-arrow-down"
+                            ></button>
+                            <ul class="pagging__list">
+                                <li class="pagging__item">
+                                    <a href="" class="pagging__link active">1</a>
+                                </li>
+                                <li class="pagging__item">
+                                    <a href="" class="pagging__link">2</a>
+                                </li>
+                                <li class="pagging__item">
+                                    <a href="" class="pagging__link">3</a>
+                                </li>
+                                <li class="pagging__item">
+                                    <a href="" class="pagging__link">...</a>
+                                </li>
+                                <li class="pagging__item">
+                                    <a href="" class="pagging__link">15</a>
+                                </li>
+                            </ul>
+                            <button
+                                type="button"
+                                class="pagging__arrow pagging__arrow--right _icon-arrow-down"
+                            ></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>`,
-        // MainText: `
-        // <div class="listing">
-        //             <div class="listing__iner">
-        //                 <div class="listing__grid-aside">
-        //                     <div class="filter" id="filterInner">
-        //                         <div class="filter-item">
-        //                             <div class="filter-panel">
-        //                                 <div class="panel__header">
-        //                                     <span class="filter-panel__title">Price</span>
-        //                                 </div>
-        //                                 <div class="panel__content">
-        //                                     <div class="filter-panel__content">
-        //                                         <div class="filter-range">
-        //                                             <label class="filter-range__label">
-        //                                                 <input type="number" class="range-input" />
-        //                                                 <span class="filter-range__label-text">from</span>
-        //                                             </label>
-        //                                             <label class="filter-range__label">
-        //                                                 <input type="number" class="range-input" />
-        //                                                 <span class="filter-range__label-text">to</span>
-        //                                             </label>
-        //                                         </div>
-        //                                     </div>
-        //                                 </div>
-        //                             </div>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //                 <div class="listing__grid-main table">
-        //                     <div class="listing__generated-container" id="products-list"></div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        // `,
     };
 
     constructor(public id: string) {
@@ -138,10 +97,8 @@ class MainPage extends Page {
             ) as HTMLTemplateElement).textContent = `-${item.discountPercentage} %`;
             (cardClone.querySelector('.product__link-title') as HTMLTemplateElement).textContent = item.title;
             (cardClone.querySelector('.product__link-title') as HTMLLinkElement).href = `#products/${item.id}`;
-
             (cardClone.querySelector('.category--value') as HTMLTemplateElement).textContent = item.category;
             (cardClone.querySelector('.brand--value') as HTMLTemplateElement).textContent = item.brand;
-
             (cardClone.querySelector('.rating__value') as HTMLTemplateElement).textContent = item.rating;
             (cardClone.querySelector('.product__price') as HTMLTemplateElement).textContent = `${item.price} €`;
             (cardClone.querySelector('.product') as HTMLTemplateElement).setAttribute('data-card-id', item.id);
@@ -151,8 +108,6 @@ class MainPage extends Page {
         categoryes = Array.from(new Set(categoryes));
         brands = Array.from(new Set(brands));
         document.querySelector('.catalog__products')?.prepend(fragment);
-
-        // document.querySelector('#products')!.prepend(fragment);
 
         // Filter Item clone
 
@@ -164,20 +119,22 @@ class MainPage extends Page {
                 const filterItemCategoryTemp = document.querySelector('#filterItemCategory')! as HTMLTemplateElement;
                 const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true)! as HTMLDivElement;
                 (filterItemCategoryClone.querySelector(
-                    '.filter-panel__title'
+                    '.item-catalog__title'
                 ) as HTMLTemplateElement).textContent = filter;
                 fragmentFilterItemCategory.append(filterItemCategoryClone);
-                document.querySelector('#filterInner')!.append(fragmentFilterItemCategory);
+                document.querySelector('#filterInner')?.append(fragmentFilterItemCategory);
                 // берем темлейт тегов категорий и вставляем каждую категорию
                 const fragmentTags = document.createDocumentFragment();
                 const tagsTemp = document.querySelector('#categoryTemp')! as HTMLTemplateElement;
                 categoryes.forEach((category) => {
                     const tagClone = tagsTemp.content.cloneNode(true)! as HTMLDivElement;
-                    (tagClone.querySelector('.tag__name') as HTMLTemplateElement).textContent = category;
-                    (tagClone.querySelector('.tag__name') as HTMLLinkElement).href = `#${category.toLocaleLowerCase()}`;
+                    (tagClone.querySelector('.item-catalog__name') as HTMLTemplateElement).textContent = category;
+                    (tagClone.querySelector(
+                        '.item-catalog__name'
+                    ) as HTMLLinkElement).href = `#${category.toLocaleLowerCase()}`;
                     fragmentTags.append(tagClone);
                 });
-                document.querySelector('#filterCategory')!.append(fragmentTags);
+                document.querySelector('#filterCategory')?.append(fragmentTags);
                 // brands
             } else if (filter === 'brand') {
                 // берем темплейт фильтер итема категорий и вставляем его
@@ -185,20 +142,22 @@ class MainPage extends Page {
                 const filterItemCategoryTemp = document.querySelector('#filterItemBrand')! as HTMLTemplateElement;
                 const filterItemCategoryClone = filterItemCategoryTemp.content.cloneNode(true)! as HTMLDivElement;
                 (filterItemCategoryClone.querySelector(
-                    '.filter-panel__title'
+                    '.item-catalog__title'
                 ) as HTMLTemplateElement).textContent = filter;
                 fragmentFilterItemBrand.append(filterItemCategoryClone);
-                document.querySelector('#filterInner')!.append(fragmentFilterItemBrand);
+                document.querySelector('#filterInner')?.append(fragmentFilterItemBrand);
                 // берем темлейт тегов категорий и вставляем каждый бренд
                 const fragmentTags = document.createDocumentFragment();
                 const tagsTemp = document.querySelector('#categoryTemp')! as HTMLTemplateElement;
                 brands.forEach((brand) => {
                     const tagClone = tagsTemp.content.cloneNode(true)! as HTMLDivElement;
-                    (tagClone.querySelector('.tag__name') as HTMLTemplateElement).textContent = brand;
-                    (tagClone.querySelector('.tag__name') as HTMLLinkElement).href = `#${brand.toLocaleLowerCase()}`;
+                    (tagClone.querySelector('.item-catalog__name') as HTMLTemplateElement).textContent = brand;
+                    (tagClone.querySelector(
+                        '.item-catalog__name'
+                    ) as HTMLLinkElement).href = `#${brand.toLocaleLowerCase()}`;
                     fragmentTags.append(tagClone);
                 });
-                document.querySelector('#filterBrand')!.append(fragmentTags);
+                document.querySelector('#filterBrand')?.append(fragmentTags);
             }
         });
     }
