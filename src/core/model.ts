@@ -1,5 +1,5 @@
 class Model {
-    private static url: string = 'https://dummyjson.com/products';
+    private static url: string = 'https://dummyjson.com';
     static errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
@@ -11,12 +11,18 @@ class Model {
     }
     async fetchData(id?: string) {
         let url = Model.url;
+        console.log(id);
         console.log(url);
 
         if (id) {
-            url = `${url}/${id}`;
+            if (Number.isInteger(+id)) {
+                url = `${url}/products/${id}`;
+            } else {
+                
+                
+                url = `${url}/${id}`;
+            }
         }
-
         console.log(url);
 
         const response = await fetch(url);

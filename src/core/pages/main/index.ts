@@ -133,7 +133,7 @@ class MainPage extends Page {
                     (tagClone.querySelector('.item-catalog__name') as HTMLTemplateElement).textContent = category;
                     (tagClone.querySelector(
                         '.item-catalog__name'
-                    ) as HTMLLinkElement).href = `#${category.toLocaleLowerCase()}`;
+                    ) as HTMLLinkElement).href = `#products/category/${category.toLocaleLowerCase()}`;
                     fragmentTags.append(tagClone);
                 });
                 document.querySelector('#filterCategory')?.append(fragmentTags);
@@ -156,7 +156,7 @@ class MainPage extends Page {
                     (tagClone.querySelector('.item-catalog__name') as HTMLTemplateElement).textContent = brand;
                     (tagClone.querySelector(
                         '.item-catalog__name'
-                    ) as HTMLLinkElement).href = `#${brand.toLocaleLowerCase()}`;
+                    ) as HTMLLinkElement).href = `#brand/${brand.toLocaleLowerCase()}`;
                     fragmentTags.append(tagClone);
                 });
                 document.querySelector('#filterBrand')?.append(fragmentTags);
@@ -164,8 +164,12 @@ class MainPage extends Page {
         });
     }
 
-    async fetchProducts() {
-        await new Controller().productsRout().then((data) => {
+    async fetchProducts(id:string) {
+        console.log(id);
+        if (id === 'main-page') {
+            id = ''
+        }
+        await new Controller().productsRout(id).then((data) => {
             MainPage.draw(data.products);
             // console.log(data.products);
         });
@@ -177,7 +181,7 @@ class MainPage extends Page {
             MainPage.TextObject.Catalog
         );
         this.container.append(text);
-        this.fetchProducts();
+        this.fetchProducts(this.id);
         return this.container;
     }
 }

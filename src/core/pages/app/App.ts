@@ -21,7 +21,7 @@ class App {
     private footer: Footer;
 
     constructor() {
-        this.initialPage = new MainPage('main-page');
+        this.initialPage = new MainPage('products');
         this.header = new Header('header', 'header');
         this.footer = new Footer('footer', 'footer');
     }
@@ -36,7 +36,7 @@ class App {
 
         if (idProduct) {
             page = new ProductPage(idPage, idProduct);
-        } else if (idPage === PageIds.Mainpage) {
+        } else if (idPage === PageIds.Mainpage || idPage.match('category')) {
             page = new MainPage(idPage);
         } else if (idPage === PageIds.Cartpage) {
             page = new CartPage(idPage);
@@ -55,16 +55,19 @@ class App {
         window.addEventListener('hashchange', () => {
             const hash = window.location.hash.slice(1);
             const id = window.location.hash.slice(10);
-            console.log({ id });
 
-            App.renderNewPage(hash, id);
+            if (Number.isInteger(+id)) {
+                App.renderNewPage(hash, id);
+            } else {
+                App.renderNewPage(hash);
+            }
         });
     }
 
     run() {
         this.header.render();
-        App.renderNewPage('main-page');
-        window.location.hash = 'main-page';
+        App.renderNewPage('products');
+        window.location.hash = 'products';
         this.routeChange();
         this.footer.render();
     }
