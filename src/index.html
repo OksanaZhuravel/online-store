@@ -10,101 +10,89 @@
     <body>
         <div class="wrapper">
             <header class="header"></header>
-            <main id="main">
-                <div class="listing">
-                    <div class="listing__iner">
-                        <div class="listing__grid-aside">
-                            <div class="filter" id="filterInner">
-                                <div class="filter-item">
-                                    <div class="filter-panel">
-                                        <div class="panel__header">
-                                            <span class="filter-panel__title">Price</span>
-                                        </div>
-                                        <div class="panel__content">
-                                            <div class="filter-panel__content">
-                                                <div class="filter-range">
-                                                    <label class="filter-range__label">
-                                                        <input type="number" class="range-input" />
-                                                        <span class="filter-range__label-text">from</span>
-                                                    </label>
-                                                    <label class="filter-range__label">
-                                                        <input type="number" class="range-input" />
-                                                        <span class="filter-range__label-text">to</span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="listing__grid-main table">
-                            <div class="listing__generated-container" id="products-list"></div>
-                        </div>
-                    </div>
-                </div>
+            <main class="main" id="main">
             </main>
             <footer class="footer"></footer>
         </div>
         <template id="cardTemp">
-            <div class="product-block">
-                <div class="product-block__bg">&nbsp;</div>
-                <div class="product-block__content">
-                    <a href="" class="product-block__wishlist"></a>
-                    <div class="product-block__image"></div>
-                    <div class="product-block__info">
-                        <a href="" class="product-block__main-link">
-                            <span class="product-block__type"></span>
-                            <span class="product-block__name"></span>
-                        </a>
-                    </div>
-                    <div class="product-block__misc">
-                        <div class="product-block__price-block">
-                            <span class="product-block__visible-price"></span>
-                            <span class="currency">€</span>
+            <article class="product">
+                <div class="product__sale"></div>
+                <a  href="" class="product__image"><span class="product__item-image-ibg product__item-image-ibg--contain"></a>
+                <div class="product__body">
+                    <h4 class="product__title"><a href="" class="product__link-title"></a></h4>
+                    <div class="product__info info-product">
+                        <div class="info-product__wrapper">
+                            <span class="info-product__text brand brand--label">Brand:</span>
+                            <span class="info-product__text brand brand--value"></span>
                         </div>
-                        <a href="" class="main-btn_buy"></a>
+                        <div class="info-product__wrapper">
+                            <span class="info-product__text category category--label">Category:</span>
+                            <span class="info-product__text category category--value"></span>
+                        </div>
                     </div>
+                        <div class="product__rating rating">
+                            <div class="rating__value">3.6</div>
+                        </div>
+                        <div class="product__footer">
+                            <div class="product__price"></div>
+                            <a href="" class="product__favorite _icon-favorite"></a>
+                        </div>
+                        <button type="button" class="product__cart button _icon-cart"><span>Buy</span></button>
                 </div>
-            </div>
+            </article>
         </template>
-
         <template id="categoryTemp">
-            <div class="tag tag-gray">
-                <a href="#categoryes" class="tag__name"></a>
+            <div class="item-catalog__inner">
+                <a href="#categoryes" class="item-catalog__name"></a>
             </div>
         </template>
         <template id="filterItemCategory">
-            <div class="filter-item">
-                <div class="filter-panel">
-                    <div class="panel__header">
-                        <span class="filter-panel__title">Category</span>
-                    </div>
-                    <div class="panel__content">
-                        <div class="filter-panel__content">
-                            <div class="filter-tags">
-                                <div class="filter-tags__iner" id="filterCategory"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="filter__item item-catalog">
+                <button type="button" class="item-catalog__title">Category</button>
+                <div class="item-catalog__body" id="filterCategory"></div>
             </div>
         </template>
         <template id="filterItemBrand">
-            <div class="filter-item">
-                <div class="filter-panel">
-                    <div class="panel__header">
-                        <span class="filter-panel__title">Brand</span>
-                    </div>
-                    <div class="panel__content">
-                        <div class="filter-panel__content">
-                            <div class="filter-tags">
-                                <div class="filter-tags__iner" id="filterBrand"></div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="filter__item item-catalog">
+                <button type="button" class="item-catalog__title">Brand</button>
+                <div class="item-catalog__body" id="filterBrand"></div>
+            </div>
+        </template>
+
+        <template id="product">
+            <div class="product__slider ">
+                <div class="product__wrapper">
                 </div>
             </div>
+        <div class="product__info">
+            <h2 class="product__title"></h2>
+            <div class="product__item">
+                <span class="product__text">discount (%)</span>
+                <span class="product__discount"></span>
+              
+                </div>
+            <div class="product__item">
+                <span class="product__text">Brand:</span>
+                <span class="product__brand"></span>
+            </div>
+            <div class="product__item">
+                <span class="product__text">Category:</span>
+                <span class="product__category"></span>
+            </div>
+            <div class="product__item">
+                <span class="product__text">rating</span>
+                <span class="product__rating">3.6</span>
+            </div>
+
+            <div class="product__item">
+                <span class="product__text">description</span>
+                <div class="product__description"></div>
+            </div>
+<div class="product__cart">
+            <button type="button" class="button"><span>Add cart</span></button>
+            <button type="button" class=" button "><span>Buy now</span></button></div>
+         </div>
+
         </template>
     </body>
 </html>

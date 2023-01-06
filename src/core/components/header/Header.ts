@@ -1,5 +1,5 @@
 import Component from '../../tempates/components';
-import { PageIds } from '../../pages/app/App';
+import { PageIds } from '../../interfaces/PageId';
 
 const Buttons = [
     {
@@ -9,6 +9,10 @@ const Buttons = [
     {
         id: PageIds.Cartpage,
         text: 'Cart',
+    },
+    {
+        id: PageIds.Productpage,
+        text: 'Product',
     },
 ];
 

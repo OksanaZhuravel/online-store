@@ -13,7 +13,6 @@ export interface ISource {
     images: AImage;
     thumbnail: string;
     price: string;
-    rating: number;
-    stock: number;
+    rating: string;
+    stock: string;
 }
-

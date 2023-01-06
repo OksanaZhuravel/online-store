@@ -5,15 +5,16 @@ import ErrorPage from '../error/Error';
 import Page from '../../tempates/page';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
-
-export const enum PageIds {
-    Mainpage = 'main-page',
-    Cartpage = 'cart-page',
-    Productpage = 'products/1',
-}
+import { PageIds } from '../../interfaces/PageId';
+// export const enum PageIds {
+//     Mainpage = 'main-page',
+//     Cartpage = 'cart-page',
+//     Productpage = 'products/1',
+// }
 
 class App {
-    static container: HTMLElement = document.getElementById('main')!;
+    // static container: HTMLElement = document.getElementById('main')!;
+    static container: HTMLElement = document.querySelector('.main') as HTMLElement;
     private static defaultPageId: string = 'current-page';
     private initialPage: MainPage;
     private header: Header;
