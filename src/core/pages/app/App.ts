@@ -34,12 +34,12 @@ class App {
         }
         let page: Page | null = null;
 
-        if (idPage === PageIds.Mainpage) {
+        if (idProduct) {
+            page = new ProductPage(idPage, idProduct);
+        } else if (idPage === PageIds.Mainpage) {
             page = new MainPage(idPage);
         } else if (idPage === PageIds.Cartpage) {
             page = new CartPage(idPage);
-        } else if (idPage === PageIds.Productpage) {
-            page = new ProductPage(idPage, idProduct);
         } else {
             page = new ErrorPage(idPage);
         }

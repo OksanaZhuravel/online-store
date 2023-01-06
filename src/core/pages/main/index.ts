@@ -165,7 +165,7 @@ class MainPage extends Page {
     }
 
     async fetchProducts() {
-        await new Controller().frendsRout().then((data) => {
+        await new Controller().productsRout().then((data) => {
             MainPage.draw(data.products);
             // console.log(data.products);
         });

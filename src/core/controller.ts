@@ -1,13 +1,15 @@
 import Model from './model';
 
 class Controller {
-    async frendsRout(id?: string) {
+    async productsRout(id?: string) {
+        console.log(id);
+        
         if (id) {
-            const friend = await new Model().getData(id);
-            return friend;
+            const product = await new Model().getData(id);
+            return product;
         } else {
-            const friends = await new Model().getData();
-            return friends;
+            const products = await new Model().getData();
+            return products;
         }
     }
 }
