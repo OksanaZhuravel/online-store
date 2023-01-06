@@ -45,7 +45,9 @@ class ProductPage extends Page {
     }
 
     async fetchProduct(id: string) {
-        await new Controller().frendsRout(id).then((data) => {
+        await new Controller().productsRout(id).then((data) => {
+            console.log(data);
+            
             ProductPage.draw(data);
         });
     }

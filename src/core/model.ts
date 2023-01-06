@@ -11,10 +11,13 @@ class Model {
     }
     async fetchData(id?: string) {
         let url = Model.url;
+        console.log(url);
 
         if (id) {
             url = `${url}/${id}`;
         }
+
+        console.log(url);
 
         const response = await fetch(url);
         if (response.ok) {
