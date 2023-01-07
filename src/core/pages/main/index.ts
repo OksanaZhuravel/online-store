@@ -82,7 +82,7 @@ class MainPage extends Page {
         // console.log(data);
         const fragment = document.createDocumentFragment();
         const cardTemp = document.querySelector('#cardTemp') as HTMLTemplateElement;
-        console.log(cardTemp);
+        // console.log(cardTemp);
 
         let categoryes: string[] = [];
         let brands: string[] = [];
@@ -104,7 +104,7 @@ class MainPage extends Page {
             (cardClone.querySelector('.rating__value') as HTMLTemplateElement).textContent = item.rating;
             (cardClone.querySelector('.product__price') as HTMLTemplateElement).textContent = `${item.price} €`;
             (cardClone.querySelector('.product') as HTMLTemplateElement).setAttribute('data-card-id', item.id);
-            // (cardClone.querySelector('.main-btn_buy') as HTMLLinkElement).href = `#products/${item.id}`;
+            // (cardClone.querySelector('.product__cart') as HTMLLinkElement).href = `#products/${item.id}`;
             fragment.append(cardClone);
         });
         categoryes = Array.from(new Set(categoryes));
@@ -162,6 +162,53 @@ class MainPage extends Page {
                 document.querySelector('#filterBrand')?.append(fragmentTags);
             }
         });
+        const productElement: NodeListOf<Element> | null = document.querySelectorAll('.product');
+        if (productElement != null) {
+            productElement.forEach((productItem) => {
+                const productLink = productItem.querySelector('.product__cart');
+                // console.log(productItem);
+                const productTitle = productItem.querySelector('.product__link-title')?.textContent;
+                // console.log(productTitle);
+                const productPrice = productItem.querySelector('.product__price')?.textContent;
+                // console.log(productPrice);
+
+                if (productLink != null) {
+                    productLink.addEventListener('click', () => {
+                        const cartID = productItem.getAttribute('data-card-id');
+                        // console.log(productItem);
+                        const cartList = document.querySelector('.cart-list');
+                        if (cartList != null) {
+                            cartList.insertAdjacentHTML(
+                                'beforeend',
+                                `<li data-cart-pid="${cartID}" class="cart-list__item">${productTitle} ${productPrice}</li>`
+                            );
+                            console.log(cartList);
+                            const list = JSON.stringify(cartList, function (key, value) {
+                                console.log(key);
+                                console.log(value);
+                            });
+                            console.log(list);
+
+                            // localStorage.setItem('cart', cartList);
+                        }
+
+                        // JSON.stringify(productItem, function (key, value) {});
+                        // console.log(cartID);
+                        // if (cartID != null) {
+                        //     localStorage.setItem('cart', cartID);
+                        //     // localStorage.data = JSON.stringify({ title: data });
+                        //     // console.log(localStorage.getItem('cart'));
+                        // }
+                        const keys = Object.keys(localStorage);
+                        for (const key of keys) {
+                            console.log(`${key}: ${localStorage.getItem(key)}`);
+                        }
+                        // addToCart(productLink, cartID);
+                        // return productLink;
+                    });
+                }
+            });
+        }
     }
 
     async fetchProducts() {
@@ -170,6 +217,7 @@ class MainPage extends Page {
             // console.log(data.products);
         });
     }
+
     render() {
         const text = this.createPage(
             MainPage.TextObject.tagName,
@@ -177,7 +225,9 @@ class MainPage extends Page {
             MainPage.TextObject.Catalog
         );
         this.container.append(text);
+
         this.fetchProducts();
+
         return this.container;
     }
 }
