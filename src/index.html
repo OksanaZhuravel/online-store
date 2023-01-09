@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon" />
+        <title>Online-store</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header"></header>
+            <main class="main" id="main"></main>
+            <footer class="footer"></footer>
+        </div>
+        <template id="cardTemp">
+            <article class="product">
+                <div class="product__sale"></div>
+                <a  href="" class="product__image"><span class="product__item-image-ibg product__item-image-ibg--contain"></a>
+                <div class="product__body">
+                    <h4 class="product__title"><a href="" class="product__link-title"></a></h4>
+                    <div class="product__info info-product">
+                        <div class="info-product__wrapper">
+                            <span class="info-product__text brand brand--label">Brand:</span>
+                            <span class="info-product__text brand brand--value"></span>
+                        </div>
+                        <div class="info-product__wrapper">
+                            <span class="info-product__text category category--label">Category:</span>
+                            <span class="info-product__text category category--value"></span>
+                        </div>
+                    </div>
+                        <div class="product__rating rating">
+                            <div class="rating__value">3.6</div>
+                        </div>
+                        <div class="product__footer">
+                            <div class="product__price"></div>
+                            <a href="" class="product__favorite _icon-favorite"></a>
+                        </div>
+                        <a class="product__cart button _icon-cart"><span>Buy</span></a>
+                </div>
+            </article>
+        </template>
+        <template id="categoryTemp">
+            <div class="item-catalog__inner">
+                <a href="#categoryes" class="item-catalog__name"></a>
+            </div>
+        </template>
+        <template id="filterItemCategory">
+            <div class="filter__item item-catalog">
+                <button type="button" class="item-catalog__title">Category</button>
+                <div class="item-catalog__body" id="filterCategory"></div>
+            </div>
+        </template>
+        <template id="filterItemBrand">
+            <div class="filter__item item-catalog">
+                <button type="button" class="item-catalog__title">Brand</button>
+                <div class="item-catalog__body" id="filterBrand"></div>
+            </div>
+        </template>
+
+        <template id="product">
+            <div class="product__slider">
+                <div class="product__wrapper">
+                </div>
+            </div>
+        <div class="product__info">
+            <h2 class="product__title"></h2>
+            <div class="product__item">
+                <span class="product__text">discount (%)</span>
+                <span class="product__discount"></span>
+              
+                </div>
+            <div class="product__item">
+                <span class="product__text">Brand:</span>
+                <span class="product__brand"></span>
+            </div>
+            <div class="product__item">
+                <span class="product__text">Category:</span>
+                <span class="product__category"></span>
+            </div>
+            <div class="product__item">
+                <span class="product__text">rating</span>
+                <span class="product__rating">3.6</span>
+            </div>
+
+            <div class="product__item">
+                <span class="product__text">description</span>
+                <div class="product__description"></div>
+            </div>
+<div class="product__cart">
+            <button type="button" class="button"><span>Add cart</span></button>
+            <button type="button" class=" button "><span>Buy now</span></button></div>
+         </div>
+
+        </template>
+    </body>
+</html>
