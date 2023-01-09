@@ -170,26 +170,34 @@ class MainPage extends Page {
                 const productTitle = productItem.querySelector('.product__link-title')?.textContent;
                 // console.log(productTitle);
                 const productPrice = productItem.querySelector('.product__price')?.textContent;
+                const productImage = productItem.querySelector('img')?.src;
                 // console.log(productPrice);
-
+                let counter: number = 0;
+                const quantity = document.querySelector('.cart__quantity');
                 if (productLink != null) {
                     productLink.addEventListener('click', () => {
                         const cartID = productItem.getAttribute('data-card-id');
                         // console.log(productItem);
                         const cartList = document.querySelector('.cart-list');
-                        if (cartList != null) {
+                        // console.log(cartList);
+
+                        if (quantity) {
+                            counter = ++counter;
+                            // const counterStr = String(counter);
+                            quantity.textContent = String(counter);
+                            // console.log(counterStr);
+                        }
+                        if (cartList) {
                             cartList.insertAdjacentHTML(
                                 'beforeend',
-                                `<li data-cart-pid="${cartID}" class="cart-list__item">${productTitle} ${productPrice}</li>`
+                                ` <div class="cart-list__boby">
+                                <img src="${productImage}" alt="${productTitle}"></img>
+                                <span class="cart-list__title">${productTitle}</span>
+                                <div class="cart-list__quantity">Price:${productPrice}</div>
+                                <span href="" class="cart-list__delete button">Delete</span>
+                                </div>`
                             );
-                            console.log(cartList);
-                            const list = JSON.stringify(cartList, function (key, value) {
-                                console.log(key);
-                                console.log(value);
-                            });
-                            console.log(list);
-
-                            // localStorage.setItem('cart', cartList);
+                            // console.log(cartList);
                         }
 
                         // JSON.stringify(productItem, function (key, value) {});

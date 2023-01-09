@@ -3,10 +3,6 @@ import { PageIds } from '../../interfaces/PageId';
 
 const Buttons = [
     {
-        id: PageIds.Mainpage,
-        text: 'Main',
-    },
-    {
         id: PageIds.Cartpage,
         text: 'Cart',
     },
@@ -35,12 +31,9 @@ class Header extends Component {
                     cartItem.closest('.menu__item')?.classList.add('cart');
                     cartItem.classList.add('_icon-cart');
                     cartItem.innerHTML = '';
-                    const cartQuantity = document.createElement('span');
-                    cartQuantity.innerText = '0';
+                    const cartQuantity = document.createElement('div');
+                    cartQuantity.className = 'cart__quantity';
                     cartItem.append(cartQuantity);
-                    // console.log(cartQuantity);
-                    const quantity = Number(cartQuantity.innerText);
-                    // console.log(quantity);
                 }
             });
         }
@@ -96,6 +89,7 @@ class Header extends Component {
         this.renderHeader();
         this.menuInit();
         this.cartInit();
+
         return this.container;
     }
 }
