@@ -3,16 +3,8 @@ import { PageIds } from '../../interfaces/PageId';
 
 const Buttons = [
     {
-        id: PageIds.Mainpage,
-        text: 'Main',
-    },
-    {
         id: PageIds.Cartpage,
         text: 'Cart',
-    },
-    {
-        id: PageIds.Productpage,
-        text: 'Product',
     },
 ];
 
@@ -29,6 +21,30 @@ class Header extends Component {
                 }
             });
         }
+    }
+    cartInit() {
+        const cartButtons: NodeListOf<Element> | null = document.querySelectorAll('.menu__button');
+        // console.log(cartButs);
+        if (cartButtons != null) {
+            cartButtons.forEach((cartItem) => {
+                if (cartItem.innerHTML == 'Cart') {
+                    cartItem.closest('.menu__item')?.classList.add('cart');
+                    cartItem.classList.add('_icon-cart');
+                    cartItem.innerHTML = '';
+                    const cartQuantity = document.createElement('div');
+                    cartQuantity.className = 'cart__quantity';
+                    cartItem.append(cartQuantity);
+                }
+            });
+        }
+        const cartHeader: Element | null = document.querySelector('.cart');
+        // console.log(cartHeader);
+        const cartHeaderBody = document.createElement('div');
+        cartHeaderBody.className = 'cart__body';
+        const cartList = document.createElement('ul');
+        cartList.className = 'cart__list cart-list';
+        cartHeaderBody.append(cartList);
+        cartHeader?.append(cartHeaderBody);
     }
 
     renderHeader() {
@@ -52,7 +68,7 @@ class Header extends Component {
             const menuItem = document.createElement('li');
             menuItem.className = 'menu__item';
             const menuLink = document.createElement('a');
-            menuLink.className = 'button';
+            menuLink.className = 'menu__button button';
             menuLink.href = `#${button.id}`;
             menuLink.innerText = `${button.text}`;
             menuItem.append(menuLink);
@@ -72,6 +88,8 @@ class Header extends Component {
     render(): HTMLElement {
         this.renderHeader();
         this.menuInit();
+        this.cartInit();
+
         return this.container;
     }
 }

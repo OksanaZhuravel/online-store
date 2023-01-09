@@ -82,7 +82,7 @@ class MainPage extends Page {
         // console.log(data);
         const fragment = document.createDocumentFragment();
         const cardTemp = document.querySelector('#cardTemp') as HTMLTemplateElement;
-        console.log(cardTemp);
+        // console.log(cardTemp);
 
         let categoryes: string[] = [];
         let brands: string[] = [];
@@ -104,7 +104,7 @@ class MainPage extends Page {
             (cardClone.querySelector('.rating__value') as HTMLTemplateElement).textContent = item.rating;
             (cardClone.querySelector('.product__price') as HTMLTemplateElement).textContent = `${item.price} €`;
             (cardClone.querySelector('.product') as HTMLTemplateElement).setAttribute('data-card-id', item.id);
-            // (cardClone.querySelector('.main-btn_buy') as HTMLLinkElement).href = `#products/${item.id}`;
+            // (cardClone.querySelector('.product__cart') as HTMLLinkElement).href = `#products/${item.id}`;
             fragment.append(cardClone);
         });
         categoryes = Array.from(new Set(categoryes));
@@ -162,6 +162,61 @@ class MainPage extends Page {
                 document.querySelector('#filterBrand')?.append(fragmentTags);
             }
         });
+        const productElement: NodeListOf<Element> | null = document.querySelectorAll('.product');
+        if (productElement != null) {
+            productElement.forEach((productItem) => {
+                const productLink = productItem.querySelector('.product__cart');
+                // console.log(productItem);
+                const productTitle = productItem.querySelector('.product__link-title')?.textContent;
+                // console.log(productTitle);
+                const productPrice = productItem.querySelector('.product__price')?.textContent;
+                const productImage = productItem.querySelector('img')?.src;
+                // console.log(productPrice);
+                let counter: number = 0;
+                const quantity = document.querySelector('.cart__quantity');
+                if (productLink != null) {
+                    productLink.addEventListener('click', () => {
+                        const cartID = productItem.getAttribute('data-card-id');
+                        // console.log(productItem);
+                        const cartList = document.querySelector('.cart-list');
+                        // console.log(cartList);
+
+                        if (quantity) {
+                            counter = ++counter;
+                            // const counterStr = String(counter);
+                            quantity.textContent = String(counter);
+                            // console.log(counterStr);
+                        }
+                        if (cartList) {
+                            cartList.insertAdjacentHTML(
+                                'beforeend',
+                                ` <div class="cart-list__boby">
+                                <img src="${productImage}" alt="${productTitle}"></img>
+                                <span class="cart-list__title">${productTitle}</span>
+                                <div class="cart-list__quantity">Price:${productPrice}</div>
+                                <span href="" class="cart-list__delete button">Delete</span>
+                                </div>`
+                            );
+                            // console.log(cartList);
+                        }
+
+                        // JSON.stringify(productItem, function (key, value) {});
+                        // console.log(cartID);
+                        // if (cartID != null) {
+                        //     localStorage.setItem('cart', cartID);
+                        //     // localStorage.data = JSON.stringify({ title: data });
+                        //     // console.log(localStorage.getItem('cart'));
+                        // }
+                        const keys = Object.keys(localStorage);
+                        for (const key of keys) {
+                            console.log(`${key}: ${localStorage.getItem(key)}`);
+                        }
+                        // addToCart(productLink, cartID);
+                        // return productLink;
+                    });
+                }
+            });
+        }
     }
 
     async fetchProducts() {
@@ -170,6 +225,7 @@ class MainPage extends Page {
             // console.log(data.products);
         });
     }
+
     render() {
         const text = this.createPage(
             MainPage.TextObject.tagName,
@@ -177,7 +233,9 @@ class MainPage extends Page {
             MainPage.TextObject.Catalog
         );
         this.container.append(text);
+
         this.fetchProducts();
+
         return this.container;
     }
 }

@@ -36,12 +36,16 @@ class App {
 
         if (idProduct) {
             page = new ProductPage(idPage, idProduct);
+            document.documentElement.classList.remove('cart--page');
         } else if (idPage === PageIds.Mainpage) {
             page = new MainPage(idPage);
+            document.documentElement.classList.remove('cart--page');
         } else if (idPage === PageIds.Cartpage) {
             page = new CartPage(idPage);
+            document.documentElement.classList.add('cart--page');
         } else {
             page = new ErrorPage(idPage);
+            document.documentElement.classList.remove('cart--page');
         }
 
         if (page) {
